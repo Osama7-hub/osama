@@ -8,7 +8,7 @@ import Lottie from "lottie-react";
 import aboutAnimation from "../../animation/about.json";
 import designAnimation from "../../animation/designServ.json";
 import devAnimation from "../../animation/develop.json";
-import "./About..css";
+import "./About.css";
 import { translations } from '../language/translations';
 import { LangContext } from '../language/LangContext';
 
@@ -16,10 +16,10 @@ function About() {
     const lottieRef = useRef();
     const { language, setLanguage } = useContext(LangContext);
     return (
-        <div className='about my-5' id='About'>
+        <div className='my-5 about' id='About'>
             <Container>
-                <div className="dots dots-up-right"></div>
-                <div className="dots dots-down-left"></div>
+                <div className="dots-up-right dots"></div>
+                <div className="dots-down-left dots"></div>
                 <h2 className='text-center section-title'>{translations[language].AboutMe}</h2>
                 <Row>
                     <Col md={12} lg={12} xl={5}>
@@ -37,7 +37,7 @@ function About() {
                                         <div className='box'>
                                             <Lottie
                                                 lottieRef={lottieRef}
-                                                className="text-left mr-5 pr-5 d-block"
+                                                className="d-block mr-5 pr-5 text-left"
                                                 style={{ width: "60px", marginBottom: "15px" }}
                                                 onLoadedImages={() => {
                                                     // @ts-ignore
@@ -54,7 +54,7 @@ function About() {
                                         <div className='box'>
                                             <Lottie
                                                 lottieRef={lottieRef}
-                                                className="text-left mr-5 pr-5 d-block"
+                                                className="d-block mr-5 pr-5 text-left"
                                                 style={{ width: "60px", height: "60px", marginBottom: "15px" }}
                                                 onLoadedImages={() => {
                                                     // @ts-ignore
