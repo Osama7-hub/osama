@@ -1,0 +1,161 @@
+.resume {
+    position: relative;
+}
+
+.timeline-content {
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin: -1px;
+}
+
+.title {
+    margin: 20px auto;
+    width: fit-content;
+    background-color: var(--primary);
+    box-shadow: 2px 3px 0px 0px var(--secondary);
+    position: relative;
+    z-index: 2;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+.left,
+.right {
+    width: calc(50% - 25px);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+@media (max-width: 767px) {
+    .left,
+    .right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .left:before,
+    .right:before {
+        display: none;
+    }
+
+    .left .content:before,
+    .right .content:before {
+        display: none;
+    }
+}
+
+.left {
+    float: left;
+}
+
+.left .content::before {
+    content: '';
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent transparent var(--primary);
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: -20px;
+    top: 20px;
+}
+
+.left .content::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 10px solid;
+    border-color: var(--primary) transparent transparent var(--primary);
+}
+
+.right {
+    float: right;
+}
+
+.right .content::before {
+    content: '';
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent var(--secondary) transparent transparent;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -20px;
+    top: 20px;
+}
+
+.right .content::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 10px solid;
+    border-color: var(--secondary) var(--secondary) transparent transparent;
+}
+
+.left:before,
+.right:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: var(--section-bg);
+    position: absolute;
+    top: 20px;
+    border-radius: 50%;
+}
+.left:before {
+    right: -35px;
+    border: 3px solid var(--primary);
+}
+.right:before {
+    left: -35px;
+    border: 3px solid var(--secondary);
+}
+.content {
+    padding: 20px;
+    background-color: var(--section-bg);
+    background-image: var(--bg-img);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: var(--box-shadow);
+    transition: all .2s;
+}
+
+.content:hover {
+    transform: scale(1.008);
+    background-position: center;
+}
+
+.content span {
+    font-size: 15px;
+    color: var(--secondary);
+}
+
+.content h3 {
+    color: var(--text);
+}
+
+.content p {
+    color: var(--text);
+    margin: 0;
+    line-height: 1.6;
+    opacity: .9;
+}
+
+.clearfix {
+    clear: both;
+}

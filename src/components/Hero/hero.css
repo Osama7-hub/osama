@@ -1,0 +1,80 @@
+.hero {
+    background-color: var(--section-bg) !important;
+    height: 50vh !important;
+    min-height: 450px !important;
+    background-image: var(--bg-img) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.hero .row {
+    height: 100vh;
+}
+
+.hero .hero-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50%;
+    color: var(--text);
+}
+
+.hero .hero-info .avatar {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid var(--secondary);
+    box-shadow: var(--box-shadow) inset;
+    padding: 4px;
+}
+
+@media(max-width: 992px) {
+    .hero .hero-info {
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+        margin-top: 50px !important;
+        height: auto;
+    }
+    .hero .hero-img {
+        display: none;
+    }
+}
+
+@media(max-width: 576px) {
+    .hero .hero-info {
+        margin-top: 50px !important;
+        height: auto;
+    }
+
+    .hero .hero-info h2 {
+        font-size: 19px;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 13px;
+    }
+}
+
+.hero .hero-info span {
+    color: var(--primary);
+    text-shadow: 1px 1px var(--secondary);
+}
+
+.hero .hero-info .social-icon img:hover {
+    transform: scale(1.1);
+    transition: all .3s;
+}
+.hero .hero-info .social-icon a.btn {
+    background-color: transparent;
+    border-color: var(--primary);
+    color: var(--primary);
+    padding: 3px 20px;
+    font-size: 15px;
+    transition: all .2s;
+}
+.hero .hero-info .social-icon a.btn:hover {
+    background-color: var(--primary);
+    color: white;
+}

@@ -1,0 +1,79 @@
+.about {
+    position: relative;
+}
+
+.about .about-img img {
+    position: relative;
+    animation: up-and-down 5s linear infinite;
+}
+
+@media(max-width: 1200px) {
+    .about .about-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media(max-width: 992px) {
+    .about .about-img {
+        display: none;
+    }
+}
+
+.services h3 {
+    color: var(--primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-info .services .box {
+    background-color: var(--section-bg);
+    background-image: var(--bg-box);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    height: auto;
+    min-height: 238px;
+    position: relative;
+    transition: all .5s;
+    margin-bottom: 20px;
+}
+
+.about-info .services .box:hover {
+    transform: translateY(-7px);
+    background-position: center;
+}
+
+.services .box::before {
+    content: "";
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    top: -3px;
+    background-color: var(--secondary);
+    position: absolute;
+    width: 0;
+    transition: all 0.3s;
+}
+
+.services .box:hover::before {
+    width: 100%;
+}
+
+.about-info .services .box p {
+    font-size: 17px;
+}
+
+@keyframes up-and-down {
+
+    0%,
+    100% {
+        top: 0;
+    }
+
+    50% {
+        top: -40px;
+    }
+}

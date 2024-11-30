@@ -1,0 +1,49 @@
+.contact {
+    position: relative;
+}
+
+.contact form label,
+.contact form label:focus {
+    background-color: transparent !important;
+}
+
+.contact form input,
+.contact form textarea {
+    background: var(--section-bg);
+    color: var(--text) !important;
+    border: none;
+    box-shadow: var(--box-shadow);
+}
+
+.contact form input:focus,
+.contact form textarea:focus {
+    background: var(--section-bg);
+    border: none;
+    box-shadow: var(--box-shadow);
+}
+
+.contact form textarea {
+    height: 200px !important;
+}
+
+.contact form ::placeholder {
+    color: var(--text);
+    opacity: 0.5;
+}
+
+.contact form button {
+    background-color: var(--primary);
+    border: none;
+    transition: all .3s;
+}
+
+.contact form button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary);
+}
+
+@media(max-width: 992px) {
+    .contact .animation {
+        display: none !important;
+    }
+}

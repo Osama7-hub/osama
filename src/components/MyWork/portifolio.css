@@ -1,0 +1,46 @@
+.portifolio {
+  position: relative;
+}
+.left-section button {
+  background-color: var(--section-bg);
+  color: var(--text);
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  transition: all 0.4s;
+}
+
+.left-section button.active {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 700;
+  box-shadow: var(--box-shadow);
+}
+
+.right-section .card {
+  border: 5px solid var(--section-bg);
+  background-color: var(--section-bg);
+  box-shadow: var(--box-shadow);
+  min-height: 224px !important;
+  overflow: hidden;
+}
+
+.right-section .card img {
+  transition: all 0.4s;
+}
+
+.right-section .card:hover img {
+  transform: scale(1.1);
+}
+
+.right-section .card-body {
+  background-color: var(--section-bg);
+  color: var(--text) !important;
+  text-align: center;
+  z-index: 2;
+}
+
+.right-section .card:hover .card-body {
+  color: var(--secondary) !important;
+}

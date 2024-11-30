@@ -1,0 +1,31 @@
+footer {
+    /* background-image: var(--bg-img); */
+    background-image: var(--bg-footer);
+    background-color: var(--section-bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+footer .copyright {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media (max-width: 991px) {
+    footer .social-icon,
+    footer .copyright {
+        display: flex;
+        /* margin-top: 20px; */
+        justify-content: center !important;
+    }
+}
+
+footer .social-icon a {
+    transition: all .3s;
+}
+
+footer .social-icon a:hover {
+    transform: scale(1.1);
+}
