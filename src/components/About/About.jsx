@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Lottie from "lottie-react";
 import designAnimation from "../../animation/designServ.json";
 import devAnimation from "../../animation/develop.json";
-import "./About.css";
+import "./about.css";
 import { translations } from '../language/translations';
 import { LangContext } from '../language/LangContext';
 
