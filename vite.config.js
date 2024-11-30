@@ -8,5 +8,10 @@ export default defineConfig({
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
-},
+  },
+  build: {
+    rollupOptions: {
+      external: ['@node-rs/argon2']
+    }
+  }
 })
