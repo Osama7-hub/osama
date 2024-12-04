@@ -106,7 +106,7 @@ export const translations = {
     education: "التعليم",
     experience: "الخبرة العملية",
     computerScience: "علوم الحاسوب",
-    csSummary: "بكالوريوس علوم حاسوب – جامعة العلوم والتكنولوجيا.",
+    csSummary: "بكالوريوس علوم حاسوب – جامعة العلوم والتقانة.",
     experience: "الخبره العملية",
     present: "الحاضر",
     freelanceFEndDev: "مستقل كمطور للواجهة الأمامية",
