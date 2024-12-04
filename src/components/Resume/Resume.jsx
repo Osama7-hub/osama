@@ -15,7 +15,7 @@ function Resume() {
                 <div className="timeline-content">
                     <div className="title">{translations[language].education}</div>
 
-                    <div className="left">
+                    <div className="right">
                         <div className="content">
                             <span className="date">2016</span>
                             <h3>{translations[language].computerScience}</h3>
@@ -27,13 +27,13 @@ function Resume() {
 
                     <div className="title">{translations[language].experience}</div>
 
-                    <div className="right">
+                    {/* <div className="right">
                         <div className="content">
                             <span className="date">2023-{translations[language].present}</span>
                             <h3>{translations[language].freelanceFEndDev}</h3>
                             <p>{translations[language].freelanceFEndDevSummary}</p>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="clearfix"></div>
                     <div className="left">
                         <div className="content">
