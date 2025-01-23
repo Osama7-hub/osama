@@ -9,23 +9,62 @@ import "./about.css";
 import { translations } from '../language/translations';
 import { LangContext } from '../language/LangContext';
 
+import { useEffect } from 'react';
+
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 function About() {
+
+    // مراقبة العنصر أثناء دخوله إلى الشاشة
+    const [ref, inView] = useInView({
+        triggerOnce: true, // التأثير يظهر مرة واحدة فقط
+        threshold: 0.1, // النسبة التي يبدأ عندها العنصر بالظهور
+    });
+
+    // للتحكم في الـ animation
+    const controls = useAnimation();
+
+    // تشغيل الأنيميشن عند ظهور العنصر
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [inView, controls]);
+
+
     const lottieRef = useRef();
     const { language, setLanguage } = useContext(LangContext);
     return (
-        <div className='my-5 about' id='About'>
+        <section className='my-5 about' id='About'>
             <Container>
                 <div className="dots-up-right dots"></div>
                 <div className="dots-down-left dots"></div>
                 <h2 className='text-center section-title'>{translations[language].AboutMe}</h2>
                 <Row>
                     <Col md={12} lg={12} xl={5}>
-                        <div className='about-img'>
+                        <motion.div 
+                        ref={ref}
+                        initial="hidden"
+                        animate={controls}
+                        variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+                        }}
+                        className='about-img'>
                             <img src="./imgs/aboutMe.png" alt="About Me" className='w-100 h-100' />
-                        </div>
+                        </motion.div>
                     </Col>
                     <Col md={12} lg={12} xl={7}>
-                        <div className='about-info'>
+                        <motion.div 
+                        ref={ref}
+                        initial="hidden"
+                        animate={controls}
+                        variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+                        }}
+                        className='about-info'>
                             <p>{translations[language].aboutSammary}</p>
                             <div className="services">
                                 <h3>{translations[language].WhatDoing}</h3>
@@ -66,11 +105,11 @@ function About() {
                                     </Col>
                                 </Row>
                             </div>
-                        </div>
+                        </motion.div>
                     </Col>
                 </Row>
             </Container>
-        </div>
+        </section>
     )
 }
 

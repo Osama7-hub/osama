@@ -9,8 +9,31 @@ import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { translations } from '../language/translations'
 import { LangContext } from '../language/LangContext';
+import { useEffect } from 'react';
+
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 
 function Hero() {
+
+    // مراقبة العنصر أثناء دخوله إلى الشاشة
+    const [ref, inView] = useInView({
+        triggerOnce: true, // التأثير يظهر مرة واحدة فقط
+        threshold: 0.1, // النسبة التي يبدأ عندها العنصر بالظهور
+    });
+
+    // للتحكم في الـ animation
+    const controls = useAnimation();
+
+    // تشغيل الأنيميشن عند ظهور العنصر
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [inView, controls]);
+
+
     const lottieRef = useRef();
     // حالة لتخزين اللغة الحالية
     const { language, setLanguage } = useContext(LangContext);
@@ -19,7 +42,15 @@ function Hero() {
             <Container>
                 <Row>
                     <Col md={12} lg={6}>
-                        <div className='hero-info'>
+                        <motion.div
+                            ref={ref}
+                            initial="hidden"
+                            animate={controls}
+                            variants={{
+                                hidden: { opacity: 0, y: 50 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+                            }}
+                            className='hero-info'>
                             <img src="./imgs/Osama.jpg" alt="avatar" width={100} height={100} className='rounded-circle avatar' />
                             <h2>{translations[language].name} <span> {translations[language].jobTitle}</span></h2>
                             <p>{translations[language].sammary}</p>
@@ -32,10 +63,18 @@ function Hero() {
                                         : <a href="files/Osama-cv.pdf" className='btn btn-primary'><FontAwesomeIcon icon={faFilePdf} /> {translations[language].cvButton}</a>
                                 }
                             </div>
-                        </div>
+                        </motion.div>
                     </Col>
                     <Col md={12} lg={6}>
-                        <div className='hero-img'>
+                        <motion.div
+                            ref={ref}
+                            initial="hidden"
+                            animate={controls}
+                            variants={{
+                                hidden: { opacity: 0, y: 50 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+                            }} 
+                        className='hero-img'>
                             <Lottie
                                 lottieRef={lottieRef}
                                 onLoadedImages={() => {
@@ -45,7 +84,7 @@ function Hero() {
                                 }}
                                 animationData={devAnimation}
                             />
-                        </div>
+                        </motion.div>
                     </Col>
                 </Row>
             </Container>

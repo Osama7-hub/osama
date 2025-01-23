@@ -1,13 +1,31 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import "./portifolio.css"
 import { myProjects } from "./myProjects";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation} from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import { Col, Container, Row, Card } from 'react-bootstrap';
 import { translations } from '../language/translations';
 import { LangContext } from '../language/LangContext';
 
-
 function Portifolio() {
+
+  // مراقبة العنصر أثناء دخوله إلى الشاشة
+  const [ref, inView] = useInView({
+    triggerOnce: true, // التأثير يظهر مرة واحدة فقط
+    threshold: 0.1, // النسبة التي يبدأ عندها العنصر بالظهور
+  });
+
+  // للتحكم في الـ animation
+  const controls = useAnimation();
+
+  // تشغيل الأنيميشن عند ظهور العنصر
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [inView, controls]);
+
+
   const { language, setLanguage } = useContext(LangContext);
   const [currentActive, setCurrentActive] = useState("all");
   const [arr, setArr] = useState(myProjects);
@@ -29,12 +47,20 @@ function Portifolio() {
   return (
     <section className="portifolio" id='Portifolio'>
       <Container>
-        <div className="dots dots-up-right"></div>
-        <div className="dots dots-down-left"></div>
-        <h2 className="section-title my-5">{translations[language].myWork}</h2>
+        <div className="dots-up-right dots"></div>
+        <div className="dots-down-left dots"></div>
+        <h2 className="my-5 section-title">{translations[language].myWork}</h2>
         <Row>
           <Col lg={2}>
-            <section className="d-flex flex-column gap-1 flex-wrap gap-2 left-section mb-5">
+            <motion.div
+              ref={ref}
+              initial="hidden"
+              animate={controls}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { opacity: 1, y: 0, transition: { duration: 1.5 } },
+              }}
+              className="left-section d-flex flex-column flex-wrap gap-1 gap-2 mb-5">
               <button
                 onClick={() => {
                   setCurrentActive("all");
@@ -63,11 +89,19 @@ function Portifolio() {
                 {translations[language].React}
               </button>
 
-            </section>
+            </motion.div>
           </Col>
 
           <Col lg={10}>
-            <div className="d-flex gap-2 right-section">
+            <motion.div
+              ref={ref}
+              initial="hidden"
+              animate={controls}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { opacity: 1, y: 0, transition: { duration: 1.5 } },
+              }}
+              className="right-section d-flex gap-2">
               <AnimatePresence>
                 <Row>
                   {arr.map((item, index) => {
@@ -79,7 +113,7 @@ function Portifolio() {
                           animate={{ transform: "scale(1)" }}
                           transition={{ type: "spring", damping: 8, stiffness: 50 }}
                           key={index}
-                          className='mb-3 d-block text-decoration-none'
+                          className='d-block mb-3 text-decoration-none'
                           href={item.projectLink} target="_blank" rel="noopener noreferrer"
                         >
                           <Card>
@@ -94,7 +128,7 @@ function Portifolio() {
                   })}
                 </Row>
               </AnimatePresence>
-            </div>
+            </motion.div>
           </Col>
         </Row>
       </Container>

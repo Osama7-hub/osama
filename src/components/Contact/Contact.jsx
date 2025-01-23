@@ -8,7 +8,28 @@ import contactAnimation from "../../animation/contactMe.json";
 import { translations } from '../language/translations';
 import { LangContext } from '../language/LangContext';
 
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 function Contact() {
+    // مراقبة العنصر أثناء دخوله إلى الشاشة
+    const [ref, inView] = useInView({
+        triggerOnce: true, // التأثير يظهر مرة واحدة فقط
+        threshold: 0.1, // النسبة التي يبدأ عندها العنصر بالظهور
+    });
+
+    // للتحكم في الـ animation
+    const controls = useAnimation();
+
+    // تشغيل الأنيميشن عند ظهور العنصر
+    useEffect(() => {
+        if (inView) {
+            controls.start("visible");
+        }
+    }, [inView, controls]);
+
+
+
     const [state, handleSubmit] = useForm("xgvekwgp");
     const { language, setLanguage } = useContext(LangContext);
 
@@ -51,14 +72,22 @@ function Contact() {
 
 
     return (
-        <section className='contact my-5' id='Contact'>
+        <section className='my-5 contact' id='Contact'>
             <Container>
-                <div className="dots dots-down-right"></div>
+                <div className="dots-down-right dots"></div>
                 <h2 className='section-title'>{translations[language].contactMe}</h2>
                 <p>{translations[language].contactsammary}</p>
                 <Row>
                     <Col md={12} lg={6}>
-                        <Form onSubmit={handleSubmit} className='my-4'>
+                        <motion.form 
+                        ref={ref}
+                        initial="hidden"
+                        animate={controls}
+                        variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 1.5 } },
+                        }}
+                        onSubmit={handleSubmit} className='my-4'>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Control required autoComplete='off' type="text" name="name" placeholder={translations[language].labelName} className='p-3'
                                     value={formData.name}
@@ -93,16 +122,24 @@ function Contact() {
                                 </div>
                             )}
 
-                        </Form>
+                        </motion.form>
                     </Col>
                     <Col md={12} lg={6}>
-                        <div className="animation d-flex justify-content-end w-100">
+                        <motion.div 
+                        ref={ref}
+                        initial="hidden"
+                        animate={controls}
+                        variants={{
+                            hidden: { opacity: 0, y: 50 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 1.5 } },
+                        }} 
+                        className="d-flex justify-content-end w-100 animation">
                             <Lottie
                                 className="contact-animation"
                                 style={{ height: 355 }}
                                 animationData={contactAnimation}
                             />
-                        </div>
+                        </motion.div>
                     </Col>
                 </Row>
             </Container>
