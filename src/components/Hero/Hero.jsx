@@ -20,7 +20,7 @@ function Hero() {
     // مراقبة العنصر أثناء دخوله إلى الشاشة
     const [ref, inView] = useInView({
         triggerOnce: true, // التأثير يظهر مرة واحدة فقط
-        threshold: 0.0, // النسبة التي يبدأ عندها العنصر بالظهور
+        threshold: 0.1, // النسبة التي يبدأ عندها العنصر بالظهور
     });
 
     // للتحكم في الـ animation
@@ -42,14 +42,7 @@ function Hero() {
             <Container>
                 <Row>
                     <Col md={12} lg={6}>
-                        <motion.div
-                            ref={ref}
-                            initial="hidden"
-                            animate={controls}
-                            variants={{
-                                hidden: { opacity: 0, y: 50 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-                            }}
+                        <div
                             className='hero-info'>
                             <img src="./imgs/Osama.jpg" alt="avatar" width={100} height={100} className='rounded-circle avatar' />
                             <h2>{translations[language].name} <span> {translations[language].jobTitle}</span></h2>
@@ -63,7 +56,7 @@ function Hero() {
                                         : <a href="files/Osama-cv.pdf" className='btn btn-primary'><FontAwesomeIcon icon={faFilePdf} /> {translations[language].cvButton}</a>
                                 }
                             </div>
-                        </motion.div>
+                        </div>
                     </Col>
                     <Col md={12} lg={6}>
                         <motion.div
