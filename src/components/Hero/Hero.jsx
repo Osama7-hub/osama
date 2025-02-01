@@ -20,7 +20,7 @@ function Hero() {
     // مراقبة العنصر أثناء دخوله إلى الشاشة
     const [ref, inView] = useInView({
         triggerOnce: true, // التأثير يظهر مرة واحدة فقط
-        threshold: 0.1, // النسبة التي يبدأ عندها العنصر بالظهور
+        threshold: 0.0, // النسبة التي يبدأ عندها العنصر بالظهور
     });
 
     // للتحكم في الـ animation
