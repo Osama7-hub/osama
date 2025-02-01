@@ -79,14 +79,7 @@ function Contact() {
                 <p>{translations[language].contactsammary}</p>
                 <Row>
                     <Col md={12} lg={6}>
-                        <motion.form 
-                        ref={ref}
-                        initial="hidden"
-                        animate={controls}
-                        variants={{
-                            hidden: { opacity: 0, y: 50 },
-                            visible: { opacity: 1, y: 0, transition: { duration: 1.5 } },
-                        }}
+                        <form 
                         onSubmit={handleSubmit} className='my-4'>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Control required autoComplete='off' type="text" name="name" placeholder={translations[language].labelName} className='p-3'
@@ -122,7 +115,7 @@ function Contact() {
                                 </div>
                             )}
 
-                        </motion.form>
+                        </form>
                     </Col>
                     <Col md={12} lg={6}>
                         <motion.div 
